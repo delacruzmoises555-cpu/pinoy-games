@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Escape the Island</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e0f7fa;
+      padding: 30px;
+      text-align: center;
+    }
+
+    #gameBox {
+      border: 3px solid #333;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: #fff;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .optionBtn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #00796b;
+      color: white;
+      cursor: pointer;
+    }
+
+    .optionBtn:hover {
+      background-color: #009688;
+    }
+  </style>
+</head>
+<body>
+  <h1>🏝️ Escape the Island</h1>
+  <div id="gameBox">
+    <p id="storyText">You wake up on a beach. You see a forest to your left and a cave to your right.</p>
+    <button class="optionBtn" onclick="chooseOption('forest')">Go to the forest</button>
+    <button class="optionBtn" onclick="chooseOption('cave')">Enter the cave</button>
+  </div>
+
+  <script>
+    function chooseOption(choice) {
+      const storyText = document.getElementById("storyText");
+      const gameBox = document.getElementById("gameBox");
+
+      if (choice === "forest") {
+        storyText.textContent = "You walk into the forest and find a river. Do you swim across or follow the river?";
+        gameBox.innerHTML = storyText.outerHTML + `
+          <button class="optionBtn" onclick="chooseOption('swim')">Swim across</button>
+          <button class="optionBtn" onclick="chooseOption('follow')">Follow the river</button>
+        `;
+      } else if (choice === "cave") {
+        storyText.textContent = "Inside the cave, you find a sleeping bear and a tunnel. What do you do?";
+        gameBox.innerHTML = storyText.outerHTML + `
+          <button class="optionBtn" onclick="chooseOption('bear')">Sneak past the bear</button>
+          <button class="optionBtn" onclick="chooseOption('tunnel')">Enter the tunnel</button>
+        `;
+      } else if (choice === "swim") {
+        storyText.textContent = "You swim across but get caught in a current. Game over!";
+        gameBox.innerHTML = storyText.outerHTML;
+      } else if (choice === "follow") {
+        storyText.textContent = "You follow the river and find a boat. You escape the island! 🎉";
+        gameBox.innerHTML = storyText.outerHTML;
+      } else if (choice === "bear") {
+        storyText.textContent = "The bear wakes up and chases you. Game over!";
+        gameBox.innerHTML = storyText.outerHTML;
+      } else if (choice === "tunnel") {
+        storyText.textContent = "The tunnel leads to a hidden exit. You escape the island! 🎉";
+        gameBox.innerHTML = storyText.outerHTML;
+      }
+    }
+  </script>
+</body>
+</html>
